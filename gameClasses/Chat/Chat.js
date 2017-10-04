@@ -92,45 +92,89 @@ var Chat = {
                 if(args[1] === undefined || args[1] == '')
                     return true;
 
-                ige.player.setHairStyle(args[1]);
-                ige.player.changeDirection();
-                console.log('Set hair style to ' + args[1]);
+                if(args[2] === undefined || args[2] == '')
+                    return true;
+
+                switch(args[1]) {
+                    case 'color': 
+                        ige.player.head.hair.setColor(args[2]);
+                        console.log('Set hair color to ' + args[2]);
+                    break;
+                    case 'style': 
+                        ige.player.setHairStyle(args[2]);
+                        ige.player.changeDirection();
+                        console.log('Set hair style to ' + args[2]);
+                    break;
+
+                    default: alert('Command not supported'); break;
+                }
             return true;
 
             case '.shirt': 
                 if(args[1] === undefined || args[1] == '')
                     return true;
 
-                ige.player.setShirtStyle(args[1]);
-                ige.player.changeDirection();
-                console.log('Set shirt style to ' + args[1]);
+                if(args[2] === undefined || args[2] == '')
+                    return true;
+
+                switch(args[1]) {
+                    case 'color': 
+                        ige.player.shirt.setColor(args[2]);
+                        console.log('Set shirt color to ' + args[2]);
+                    break;
+                    case 'style': 
+                        ige.player.setShirtStyle(args[2]);
+                        ige.player.changeDirection();
+                        console.log('Set shirt style to ' + args[2]);
+                    break;
+
+                    default: alert('Command not supported'); break;
+                }
+
             return true;
 
-            case '.pant': 
+            case '.pants': 
                 if(args[1] === undefined || args[1] == '')
                     return true;
 
-                ige.player.setPantStyle(args[1]);
-                ige.player.changeDirection();
-                console.log('Set pants style to ' + args[1]);
+                if(args[2] === undefined || args[2] == '')
+                    return true;
+
+                switch(args[1]) {
+                    case 'color': 
+                        ige.player.pants.setColor(args[2]);
+                        console.log('Set pants color to ' + args[2]);
+                    break;
+                    case 'style': 
+                        ige.player.setPantStyle(args[2]);
+                        ige.player.changeDirection();
+                        console.log('Set pants style to ' + args[2]);
+                    break;
+
+                    default: alert('Command not supported'); break;
+                }
             return true;
 
-            case '.shoe': 
+            case '.shoes': 
                 if(args[1] === undefined || args[1] == '')
                     return true;
 
-                ige.player.setShoeStyle(args[1]);
-                ige.player.changeDirection();
-                console.log('Set shoes style to ' + args[1]);
-            return true;
-
-            case '.haircolor':
-                if(args[1] === undefined || args[1] == '')
+                if(args[2] === undefined || args[2] == '')
                     return true;
 
-                ige.player.head.hair.setColor(args[1]);
+                switch(args[1]) {
+                    case 'color': 
+                        ige.player.shoes.setColor(args[2]);
+                        console.log('Set shoes color to ' + args[2]);
+                    break;
+                    case 'style': 
+                        ige.player.setShoeStyle(args[2]);
+                        ige.player.changeDirection();
+                        console.log('Set shoes style to ' + args[2]);
+                    break;
 
-                console.log('Set hair color to ' + args[1]);
+                    default: alert('Command not supported'); break;
+                }
             return true;
 
             case '.a':
