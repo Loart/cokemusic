@@ -5,28 +5,28 @@
 		{
 			"prodId": "61",
 			"type": "Teleport",
-			"price": "500",
+			"price": "1500",
 			"name": "Teleporter",
 			"image": "door_small.png"
 		},
 		{
 			"prodId": "67",
 			"type": "Chair",
-			"price": "500",
+			"price": "250",
 			"name": "Messy Box",
 			"image": "messybox_small.png"
 		},
 		{
 			"prodId": "68",
 			"type": "Separator",
-			"price": "500",
+			"price": "1500",
 			"name": "Coke Machine",
 			"image": "cokemachine_small.png"
 		},
 		{
 			"prodId": "69",
 			"type": "Default",
-			"price": "500",
+			"price": "1500",
 			"name": "Jukebox",
 			"image": "jukebox_small.png"
 		},
@@ -47,16 +47,16 @@
 		{
 			"prodId": "72",
 			"type": "DiscoLight",
-			"price": "500",
+			"price": "2500",
 			"name": "Disco Lights",
 			"image": "lightpole_small.png"
 		},
-		{
-			"prodId": "73",
-			"type": "Poster",
-			"price": "500",
-			"name": "Happy Holidays Poster",
-			"image": "poster christmas_small.png"
-		}
+		// {
+		// 	"prodId": "73",
+		// 	"type": "Poster",
+		// 	"price": "500",
+		// 	"name": "Happy Holidays Poster",
+		// 	"image": "poster christmas_small.png"
+		// }
 	]
 }

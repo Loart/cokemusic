@@ -12,28 +12,28 @@
 		{
 			"prodId": "4",
 			"type": "Stool",
-			"price": "500",
+			"price": "450",
 			"name": "Premier Stool",
 			"image": "northern_stool_small.png"
 		},
 		{
 			"prodId": "5",
 			"type": "Sofa",
-			"price": "500",
+			"price": "625",
 			"name": "Premier Sofa",
 			"image": "northern_sofa_small.png"
 		},
 		{
 			"prodId": "6",
 			"type": "Table",
-			"price": "500",
+			"price": "450",
 			"name": "Premier Coffee Table",
 			"image": "northern_ctable_small.png"
 		},
 		{
 			"prodId": "7",
 			"type": "Table",
-			"price": "500",
+			"price": "950",
 			"name": "Premier Table",
 			"image": "northern_table_small.png"
 		},
@@ -54,7 +54,7 @@
 		{
 			"prodId": "10",
 			"type": "Default",
-			"price": "500",
+			"price": "450",
 			"name": "Premier Light",
 			"image": "northern_light_small.png"
 		}
