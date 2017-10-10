@@ -154,37 +154,6 @@ var PlayerStudio = Room.extend({
 			.scaleTo(globalScale, globalScale, globalScale)
 			.mount(self._objScene);
 
-		// Create an isometric left wall
-		// self._leftWall = new GameWall()
-		// 	.id('leftWall')
-		// 	.drawBounds(false)
-		// 	.drawBoundsData(false)
-		// 	.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
-		// 	.isometricMounts(true)
-		// 	.tileWidth($TILESIZE)
-		// 	.tileHeight($TILESIZE_WALL)
-		// 	.gridSize(3, self.object['height'])
-		// 	.drawGrid(false)
-		// 	.drawMouse(true)
-		// 	.gridColor('transparent')
-		// 	.hoverStrokeColor($HOVER_TILE_COLOR)
-		// 	.hoverColor($HOVER_TILE_BG_COLOR)
-		// 	.highlightOccupied($HIGHLIGHT_OCCUPIED)
-		// 	.mount(self._objScene);
-
-		// self._texWallMap = new IgeTextureMap()
-		// 	.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
-		// 	.tileWidth($TILESIZE)
-		// 	.tileHeight($TILESIZE_WALL)
-		// 	.gridSize(3, self.object['height'])
-		// 	.gridColor('#470930')
-		// 	.drawGrid($DRAW_GRIDLINES)
-		// 	.drawMouse(false)
-		// 	.autoSection(self.object['width'])
-		// 	.drawSectionBounds(false)
-		// 	.isometricMounts(true)
-		// 	.mount(self._leftWall);
-
 		// Create the texture map
 		self._texMap = new IgeTextureMap()
 			.id('textureMap')
@@ -373,6 +342,8 @@ var PlayerStudio = Room.extend({
 
 		//Draw Window
 		if(typeof self.object['window'] !== 'undefined') {
+			// TODO: get the window style from somewhere
+
 			var gameWindow = new IgeEntity()
 				.isometric(true)
 				.texture(ige.gameTexture.windows.london)
@@ -386,6 +357,7 @@ var PlayerStudio = Room.extend({
 		self._texMap.drawGrid($DRAW_GRIDLINES);
 
 		//Door
+		//TODO: textures need to match with the wall
 		if(typeof self.object['door'] !== 'undefined') {
 			var startCords = self.playerStartCords();
 
@@ -412,6 +384,7 @@ var PlayerStudio = Room.extend({
 
 
 		//Wall Colors
+		//TODO: wall color needs to be pulling from somewhere
 		self._rightWall.setColor('#254278');
 		self._leftWall.setColor('#254278');
 		self._insetWall.setColor('#254278');
@@ -428,7 +401,6 @@ var PlayerStudio = Room.extend({
 					.mount(self._tilemap)
 					.bounds3d(0, 0, object.height)
 					.anchor(object.x_anchor, object.y_anchor)
-					//.layer(10)
 					.scaleTo(object.scale, object.scale, object.scale)
 					.translateToTile(object.spawn.x, object.spawn.y, 0);
 
