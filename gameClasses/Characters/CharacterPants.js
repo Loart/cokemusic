@@ -8,6 +8,11 @@ var CharacterPants = CharacterPart.extend({
 		self._style = container.data('pant_style');
 		self._container = container;
 
+		//Make a copy of our texture and assign it
+		self._ourTexture = ige.gameTexture.pants[self._style];
+
 		CharacterPart.prototype.init.call(this);
+
+		self.setColor('#A81313');
 	},
 });

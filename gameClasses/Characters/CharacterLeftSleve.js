@@ -1,13 +1,18 @@
 var CharacterLeftSleve = CharacterPart.extend({
 	classId: 'CharacterLeftSleve',
 
-	init: function (container) {
+	init: function (container, shirt) {
 		var self = this;
 		self._part = 'ls';
 		self._depthTemp = 4;
 		self._style = container.data('shirt_ls');
 		self._customFPS = $CHARACTER_FPS / 2;
 		self._container = container;
+		self._shirt = shirt;
+
+		//Make a copy of our texture and assign it
+		self._ourTexture = shirt._ourTexture;
+
 		self.defineWalkingAnimations = function() {
 			this.animation.define('wlk_NE', this.getWalkingAnimation('0'), $fps, -1)
 				.animation.define('wlk_NW', this.getWalkingAnimation('0'), $fps, -1)

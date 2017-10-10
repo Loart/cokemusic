@@ -12,11 +12,23 @@ var CharacterPart = IgeEntity.extend({
 		if(this._depthTemp === undefined)
 			this._depthTemp = 0;
 
+		//Check if anchors are set
+		var anchorX = 0;
+			anchorY = this._container.data('anchorY');
+
+		if(self.data('anchorX') != null) {
+			anchorX = self.data('anchorX');
+		}
+
+		if(self.data('anchorY') != null) {
+			anchorY = self.data('anchorY');
+		}
+
 		//Create the entity
 		this.isometric(true)
 			.addComponent(AnimatorComponent)
 			.depth(this._depthTemp)
-			.anchor(0, this._container.data('anchorY'));
+			.anchor(anchorX, anchorY);
 
 		//Init the object texture
 		this.setTexture();
@@ -41,39 +53,39 @@ var CharacterPart = IgeEntity.extend({
 			this.defineWalkingAnimations();
 		}
 
-		//Sitting animations
-		if(typeof self.defineSittingAnimations != 'function') {
-			this.animation.define('sit_NE', this.getSittingAnimation('0'), $fps, -1)
-				.animation.define('sit_NW', this.getSittingAnimation('0'), $fps, -1)
-				.animation.define('sit_W',  this.getSittingAnimation('1'), $fps, -1)
-				.animation.define('sit_E',  this.getSittingAnimation('1'), $fps, -1)
-				.animation.define('sit_SW', this.getSittingAnimation('2'), $fps, -1)
-				.animation.define('sit_SE', this.getSittingAnimation('2'), $fps, -1)
-				.animation.define('sit_S',  this.getSittingAnimation('3'), $fps, -1)
-				.animation.define('sit_N',  this.getSittingAnimation('7'), $fps, -1);
-		} else {
-			this.defineSittingAnimations();
-		}
+		// //Sitting animations
+		// if(typeof self.defineSittingAnimations != 'function') {
+		// 	this.animation.define('sit_NE', this.getSittingAnimation('0'), $fps, -1)
+		// 		.animation.define('sit_NW', this.getSittingAnimation('0'), $fps, -1)
+		// 		.animation.define('sit_W',  this.getSittingAnimation('1'), $fps, -1)
+		// 		.animation.define('sit_E',  this.getSittingAnimation('1'), $fps, -1)
+		// 		.animation.define('sit_SW', this.getSittingAnimation('2'), $fps, -1)
+		// 		.animation.define('sit_SE', this.getSittingAnimation('2'), $fps, -1)
+		// 		.animation.define('sit_S',  this.getSittingAnimation('3'), $fps, -1)
+		// 		.animation.define('sit_N',  this.getSittingAnimation('7'), $fps, -1);
+		// } else {
+		// 	this.defineSittingAnimations();
+		// }
 
-		//Carrying
-		this.animation.define('crr_NE', this.getCarryAnimation('0'), $fps, -1)
-			.animation.define('crr_NW', this.getCarryAnimation('0'), $fps, -1)
-			.animation.define('crr_W',  this.getCarryAnimation('1'), $fps, -1)
-			.animation.define('crr_E',  this.getCarryAnimation('1'), $fps, -1)
-			.animation.define('crr_SW', this.getCarryAnimation('2'), $fps, -1)
-			.animation.define('crr_SE', this.getCarryAnimation('2'), $fps, -1)
-			.animation.define('crr_S',  this.getCarryAnimation('3'), $fps, -1)
-			.animation.define('crr_N',  this.getCarryAnimation('7'), $fps, -1);
+		// //Carrying
+		// this.animation.define('crr_NE', this.getCarryAnimation('0'), $fps, -1)
+		// 	.animation.define('crr_NW', this.getCarryAnimation('0'), $fps, -1)
+		// 	.animation.define('crr_W',  this.getCarryAnimation('1'), $fps, -1)
+		// 	.animation.define('crr_E',  this.getCarryAnimation('1'), $fps, -1)
+		// 	.animation.define('crr_SW', this.getCarryAnimation('2'), $fps, -1)
+		// 	.animation.define('crr_SE', this.getCarryAnimation('2'), $fps, -1)
+		// 	.animation.define('crr_S',  this.getCarryAnimation('3'), $fps, -1)
+		// 	.animation.define('crr_N',  this.getCarryAnimation('7'), $fps, -1);
 
-		//Drinking
-		this.animation.define('drk_NE', this.getDrinkingAnimation('0'), $CHARACTER_DRINK_FPS, -1)
-			.animation.define('drk_NW', this.getDrinkingAnimation('0'), $CHARACTER_DRINK_FPS, -1)
-			.animation.define('drk_W',  this.getDrinkingAnimation('1'), $CHARACTER_DRINK_FPS, -1)
-			.animation.define('drk_E',  this.getDrinkingAnimation('1'), $CHARACTER_DRINK_FPS, -1)
-			.animation.define('drk_SW', this.getDrinkingAnimation('2'), $CHARACTER_DRINK_FPS, -1)
-			.animation.define('drk_SE', this.getDrinkingAnimation('2'), $CHARACTER_DRINK_FPS, -1)
-			.animation.define('drk_S',  this.getDrinkingAnimation('3'), $CHARACTER_DRINK_FPS, -1)
-			.animation.define('drk_N',  this.getDrinkingAnimation('7'), $CHARACTER_DRINK_FPS, -1);
+		// //Drinking
+		// this.animation.define('drk_NE', this.getDrinkingAnimation('0'), $CHARACTER_DRINK_FPS, -1)
+		// 	.animation.define('drk_NW', this.getDrinkingAnimation('0'), $CHARACTER_DRINK_FPS, -1)
+		// 	.animation.define('drk_W',  this.getDrinkingAnimation('1'), $CHARACTER_DRINK_FPS, -1)
+		// 	.animation.define('drk_E',  this.getDrinkingAnimation('1'), $CHARACTER_DRINK_FPS, -1)
+		// 	.animation.define('drk_SW', this.getDrinkingAnimation('2'), $CHARACTER_DRINK_FPS, -1)
+		// 	.animation.define('drk_SE', this.getDrinkingAnimation('2'), $CHARACTER_DRINK_FPS, -1)
+		// 	.animation.define('drk_S',  this.getDrinkingAnimation('3'), $CHARACTER_DRINK_FPS, -1)
+		// 	.animation.define('drk_N',  this.getDrinkingAnimation('7'), $CHARACTER_DRINK_FPS, -1);
 
 		//Listen for numerous events that fire off.
 		this._container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
@@ -82,6 +94,10 @@ var CharacterPart = IgeEntity.extend({
 
 		//Finally mount to the Character container
 		this.mount(this._container);
+	},
+
+	cacheTextures: function() {
+
 	},
 
 	changedAnimation: function(animation, dir) {
@@ -158,10 +174,14 @@ var CharacterPart = IgeEntity.extend({
 			part 		= this._part,
 			style 		= this._style,
 			direction 	= dir,
-			subsection  = subDir;
+			subsection  = subDir,
+			texture 	= ige.gameTexture.people;
 
-		//Set the texture
-		this.texture(ige.gameTexture.people)
+		if(typeof this._ourTexture !== 'undefined') {
+			texture = this._ourTexture;
+		}
+
+		this.texture(texture)
 			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
 			.dimensionsFromCell();
 	},
@@ -181,10 +201,15 @@ var CharacterPart = IgeEntity.extend({
 			part 		= this._part,
 			style 		= this._style,
 			direction 	= dir,
-			subsection  = subDir;
+			subsection  = subDir,
+			texture 	= ige.gameTexture.people;
+
+		if(typeof this._ourTexture !== 'undefined') {
+			texture = this._ourTexture;
+		}
 
 		//Set the texture
-		this.texture(ige.gameTexture.people)
+		this.texture(texture)
 			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
 			.dimensionsFromCell();
 	},
@@ -248,7 +273,6 @@ var CharacterPart = IgeEntity.extend({
 		return frames;
 	},
 
-
 	getSittingAnimation: function(vDir) {
 		var frames = [], start, action, part, style, direction, subsection;
 
@@ -310,6 +334,6 @@ var CharacterPart = IgeEntity.extend({
 	},
 
 	setColor: function(colorSelection) {
-		this._texture.applyFilter(IgeFilters.colorOverlay, {color: colorSelection});
+		this._texture.applyFilter(IgeFilters.multiply, {color: colorSelection});
 	}
 });

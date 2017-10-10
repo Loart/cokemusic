@@ -133,6 +133,7 @@ var igeCoreConfig = {
 		['cap', 'IgeFilters.edgeEnhance', 'filters/edgeEnhance.js'],
 		['cap', 'IgeFilters.outlineDetect', 'filters/outlineDetect.js'],
 		['cap', 'IgeFilters.colorOverlay', 'filters/colorOverlay.js'],
+		['cap', 'IgeFilters.multiply', 'filters/multiply.js'],
 		['cap', 'IgeFilters.sobel', 'filters/sobel.js'],
 		['cap', 'IgeFilters.invert', 'filters/invert.js'],
 		['cap', 'IgeFilters.glowMask', 'filters/glowMask.js'],

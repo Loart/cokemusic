@@ -38,7 +38,7 @@ var Navigation = {
 					.id('player')
 					.setStyle('001')
 					.setHeadStyle('001')
-					.setHairStyle('013')
+					.setHairStyle('014')
 					.setEyeStyle('001')
 					.setMouthStyle('001')
 					.setLeftSleveStyle('001')

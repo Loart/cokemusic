@@ -8,7 +8,9 @@
     <meta name="game-engine-origin" content="http://www.isogenicengine.com">
 	<meta http-equiv="X-UA-Compatible" content="IE=9" >
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/socket.io.min.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="/css/styles.css">
 	<script type="text/javascript" src="/js/main.js"></script>
     <script type="text/javascript" src="/js/inventory.js"></script>
@@ -91,12 +93,26 @@
     <!-- INVENTORY -->
     <div class="contain">
         <div id="inventory">
+            <div class="inventory-content-wrapper">
             <div class="i-move">
                 <p class="title">Your Items</p>
                 <a id="backpack_close"><img src="./assets/ui/cc.backpack.closebox.active.png"></a>
             </div>
 
             <ul class="inventory-data">
+                <li>
+                    <ul id="inventory_data" class="items clearfix" style="display: none">
+                        <li><a data-item="pinball"><img src="./assets/furniture/icons/pinball_small.png"></a></li>
+                        <li><a data-item="sofa_coke"><img src="./assets/furniture/icons/sofa_coke.png"></a></li>
+                        <li><a data-item="sofa_coke" class=""><img src="./assets/furniture/icons/sofa_coke.png"></a></li>
+                        <li><a data-item="sofa_coke"><img src="./assets/furniture/icons/sofa_coke.png"></a></li>
+                        <li><a data-item="tv"><img src="./assets/furniture/icons/tv_small.png"></a></li>
+                        <li><a data-item="sofa_coke"><img src="./assets/furniture/icons/sofa_coke.png"></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+<!--             <ul class="inventory-data">
                 <li data-page="1">
                     <ul class="items clearfix">
                         <li><a data-item="pinball"><img src="./assets/furniture/icons/pinball_small.png"></a></li>
@@ -153,13 +169,14 @@
                         <li><a data-item="bubble_gum"><img src="./assets/furniture/icons/gumball_small.png"></a></li>
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
 
-            <div class="inventory-navigation">
-                <a class="i-arrow-left"><img src="./assets/ui/cc.pack.leftarrow.png"></a>
+            <div id="inventory_data-pagination" class="inventory-navigation">
+                <a id="inventory_data-previous" class="i-arrow-left"><img src="./assets/ui/cc.pack.leftarrow.png"></a>
                 <span class="i-page-display">Page 1 of 1</span>
-                <a class="i-arrow-right"><img src="./assets/ui/cc.pack.rightarrow.png"></a>
+                <a id="inventory_data-next" class="i-arrow-right"><img src="./assets/ui/cc.pack.rightarrow.png"></a>
             </div>
+        </div>
         </div>
     </div>
 
@@ -712,6 +729,13 @@
                     </ul>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- MESSENGER -->
+    <div class="contain">
+        <div id="messenger-ui" class="popup">
+
         </div>
     </div>
 

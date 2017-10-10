@@ -354,6 +354,9 @@ html, body {
     text-align: center; }
     #inventory .inventory-navigation .i-page-display {
       padding: 0 7px; }
+  #inventory .inventory-content-wrapper {
+    height: 100%;
+    position: relative; }
   #inventory .inventory-data {
     position: relative;
     height: 89%; }

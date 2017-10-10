@@ -33,6 +33,9 @@ var Client = IgeClass.extend({
 		ige.gameTexture.pokemon = new IgeTexture(rootPath + 'assets/rooms/pokemon.jpg');
 		ige.gameTexture.entry_top = new IgeTexture(rootPath + 'assets/rooms/wall_doormask.png');
 		ige.gameTexture.entry_side = new IgeTexture(rootPath + 'assets/rooms/wall_doormask_side.png');
+
+		ige.gameTexture.windows = {};
+		ige.gameTexture.windows.london = new IgeTexture(rootPath + 'assets/rooms/windows/studio.window.london.png');
 		
 		ige.gameTexture.leftWall = new IgeTexture(rootPath + 'assets/textures/left_wall_1_a_0_0_0.png');
 		ige.gameTexture.rightWall = new IgeTexture(rootPath + 'assets/textures/right_wall_1_a_0_2_0.png');
@@ -41,6 +44,18 @@ var Client = IgeClass.extend({
 
 		ige.gameTexture.people = new TexturePackerAtlas('PEOPLE', rootPath + 'assets/character/data.png', rootPath + 'assets/character/data.js');
 		ige.gameTexture.people.hair = new TexturePackerAtlas('PEOPLE', rootPath + 'assets/character/data.png', rootPath + 'assets/character/data.js');
+
+		ige.gameTexture.pants = [];
+		ige.gameTexture.pants['001'] = new TexturePackerAtlas('PANTS_001', rootPath + 'assets/character/pants/pants_001.png', rootPath + 'assets/character/pants/pants_001.js');
+
+		ige.gameTexture.body = [];
+		ige.gameTexture.body['001'] = new TexturePackerAtlas('BODY_001', rootPath + 'assets/character/body/body_001.png', rootPath + 'assets/character/body/body_001.js');
+
+		ige.gameTexture.shirt = [];
+		ige.gameTexture.shirt['001'] = new TexturePackerAtlas('SHIRT_001', rootPath + 'assets/character/shirts/shirt_001.png', rootPath + 'assets/character/shirts/shirt_001.js');
+
+		ige.gameTexture.shoes = [];
+		ige.gameTexture.shoes['001'] = new TexturePackerAtlas('SHOES_001', rootPath + 'assets/character/shoes/shoes_001.png', rootPath + 'assets/character/shoes/shoes_001.js');
 
 		//Furniture
 		ige.gameTexture.furniture = new IgeSpriteSheet(rootPath + 'assets/furniture.png');

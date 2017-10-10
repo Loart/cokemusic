@@ -220,8 +220,42 @@ var PlayerStudio = Room.extend({
 			.mount(self._objScene);
 
 		//Create texture for left wall
-		self._leftWall = new IgeTileMap2d()
+		self._leftWall = new GameWallContainer()
 			.id('leftWall')
+			.layer(1)
+			.drawBounds(false)
+			.drawBoundsData(false)
+			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
+			.isometricMounts(true)
+			.tileWidth($TILESIZE)
+			.tileHeight($TILESIZE)
+			.gridSize(self.object['width'], self.object['height'])
+			.drawGrid(false)
+			.drawMouse(false)
+			.gridColor('transparent')
+			.scaleTo(globalScale, globalScale, globalScale)
+			.mount(self._objScene);
+
+		//Create texture for right wall
+		self._rightWall = new GameWallContainer()
+			.id('rightWall')
+			.layer(1)
+			.drawBounds(false)
+			.drawBoundsData(false)
+			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
+			.isometricMounts(true)
+			.tileWidth($TILESIZE)
+			.tileHeight($TILESIZE)
+			.gridSize(self.object['width'], self.object['height'])
+			.drawGrid(false)
+			.drawMouse(false)
+			.gridColor('transparent')
+			.scaleTo(globalScale, globalScale, globalScale)
+			.mount(self._objScene);
+
+		//Create texture for inset wall
+		self._insetWall = new GameWallContainer()
+			.id('insetWall')
 			.layer(1)
 			.drawBounds(false)
 			.drawBoundsData(false)
@@ -262,18 +296,14 @@ var PlayerStudio = Room.extend({
 
 		// Generate Carpet Tiles
 		if(typeof self.object['draw_floor'] === 'undefined' || self.object['draw_floor'] == true) {
-			// var height = ige.gameTexture.carpetTest.sizeY();
-			// var width = ige.gameTexture.carpetTest.sizeX();
-
-			// ige.gameTexture.carpetTest.sizeY(height - 5);
-			// ige.gameTexture.carpetTest.sizeX(width - 5);
-			//ige.gameTexture.carpetTest.resizeByPercent(99, 99);
 			var texIndex = self._tileTexMap.addTexture(ige.gameTexture.carpetTest);
 
 			for (var x = 0; x < self.object['width']; x++) {
 				for (var y = 0; y < self.object['height']; y++) {
 
-					var isBlocked = false;
+					var isBlocked = false,
+						insetLeft = false,
+						insetRight = false;
 
 					//Make sure the tile isnt blocked
 					if(typeof blockedTiles != 'undefined') {
@@ -288,39 +318,68 @@ var PlayerStudio = Room.extend({
 							self._tileTexMap.paintTile(x, y, texIndex, 1);
 						}
 					} else {
-						//console.log('painting x: ' + x + ', y: ' + y);
 						self._tileTexMap.paintTile(x, y, texIndex, 1);
 					}
 
+					//Draw the walls while we are painting the floor tiles
 					if(typeof self.object['draw_wall'] === 'undefined' || self.object['draw_wall'] == true) {
-						if(x == self.playerStartCords().x && y == self.playerStartCords().y + 1) {
+						//Don't block the doorway with a wall
+						if( (x == self.playerStartCords().x && y == self.playerStartCords().y + 1)) {
 							continue;
 						}
 
 						//Paint all the left walls
 						if(x == 0 && isBlocked == false) {
-							var obj = new IgeEntity()
-								.isometric(true)
-								.texture(ige.gameTexture.leftWall)
-								.dimensionsFromCell()
-								.mount(self._leftWall)
-								.anchor(-18, -66)
-								.translateToTile(x, y, 0);
+							var obj = new GameWall(
+								self._leftWall, 
+								x, y, 
+								ige.gameTexture.leftWall, 
+								-18, -66);
 						}
 
 						//Paint all the right walls
 						if(y == 0 && isBlocked == false) {
-							var obj = new IgeEntity()
-								.isometric(true)
-								.texture(ige.gameTexture.rightWall)
-								.dimensionsFromCell()
-								.mount(self._leftWall)
-								.anchor(18, -66)
-								.translateToTile(x, y, 0);
+							var obj = new GameWall(
+								self._rightWall, 
+								x, y, 
+								ige.gameTexture.rightWall, 
+								18, -66);
 						}
 					}
 				}
 			}
+		}
+
+		//Draw inset walls
+		if(typeof blockedTiles != 'undefined') {
+			for (var i = 0; i < blockedTiles.length; i++) {
+				if(blockedTiles[i]['rightWall'] == true) {
+					var obj = new GameWall(
+						self._rightWall, 
+						blockedTiles[i]['x'], blockedTiles[i]['y'] + 1, 
+						ige.gameTexture.rightWall, 
+						18, -66);
+				}
+
+				if(blockedTiles[i]['leftWall'] == true) {
+					var obj = new GameWall(
+						self._leftWall, 
+						blockedTiles[i]['x'] + 1, blockedTiles[i]['y'], 
+						ige.gameTexture.leftWall, 
+						-18, -66);
+				}	
+			}
+		}
+
+		//Draw Window
+		if(typeof self.object['window'] !== 'undefined') {
+			var gameWindow = new IgeEntity()
+				.isometric(true)
+				.texture(ige.gameTexture.windows.london)
+				.dimensionsFromCell()
+				.mount(self._tilemap)
+				.anchor(self.object['window']['anchorX'], self.object['window']['anchorY'])
+				.translateToTile(self.object['window']['x'], self.object['window']['y'], 0);
 		}
 
 		//Draw the grid
@@ -351,6 +410,12 @@ var PlayerStudio = Room.extend({
 				.translateToTile(startCords.x, startCords.y, 0);
 		}
 
+
+		//Wall Colors
+		self._rightWall.setColor('#254278');
+		self._leftWall.setColor('#254278');
+		self._insetWall.setColor('#254278');
+
 		//Static objects
 		if(typeof self.object['static_objects'] !== 'undefined') {
 			for (var i = self.object['static_objects'].length - 1; i >= 0; i--) {
@@ -370,7 +435,19 @@ var PlayerStudio = Room.extend({
 			}
 		}
 
+		//Saved Objects
+		//self.loadItems(object.furniture);
+
 		return this;
+	},
+
+	//Loads in all furniture data
+	loadItems: function(data) {
+		if(typeof data === 'undefined') {
+			return;
+		}
+
+		
 	},
 
 	playerStartCords: function() {

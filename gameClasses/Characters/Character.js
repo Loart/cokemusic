@@ -16,7 +16,7 @@ var Character = IgeEntity.extend({
 		// Create a character entity as a child of this container
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.bounds3d(45, 45, 58)
+			.bounds3d($TILESIZE, $TILESIZE, 58)
 			.texture(ige.gameTexture.people)
 			.anchor(0, 0);
 
@@ -53,12 +53,11 @@ var Character = IgeEntity.extend({
 			.lookAheadSteps(10)
 			.autoStop(true)
 			.dynamic(true)
-			.dynamic(true)
-			.allowSquare(true) // Allow north, south, east and west movement
-			.allowDiagonal(true) // Allow north-east, north-west, south-east, south-west movement
-			.drawPath(false) // Enable debug drawing the paths
-			.drawPathGlow(false) // Enable path glowing (eye candy)
-			.drawPathText(false); // Enable path text output
+			.allowSquare(true) 		// Allow north, south, east and west movement
+			.allowDiagonal(true)	// Allow north-east, north-west, south-east, south-west movement
+			.drawPath(false) 		// Enable debug drawing the paths
+			.drawPathGlow(false)	// Enable path glowing (eye candy)
+			.drawPathText(false); 	// Enable path text output
 	},
 
 	setStyle: function(str) {
@@ -136,12 +135,6 @@ var Character = IgeEntity.extend({
 		//Spawn shirt
 		self.shirt = new CharacterShirt(self);
 
-		//Spawn left shirt sleve
-		self.leftSleve = new CharacterLeftSleve(self);
-
-		//Spawn right shirt sleve
-		self.rightSleve = new CharacterRightSleve(self);
-
 		//Spawn pants
 		self.pants = new CharacterPants(self);
 
@@ -149,7 +142,7 @@ var Character = IgeEntity.extend({
 		self.shoes = new CharacterShoes(self);
 
 		//Spawn carry placeholder
-		self.carry = new CharacterCarry(self);
+		// self.carry = new CharacterCarry(self);
 
 		//StartCordinates
 		var startCords = ige.room.playerStartCords();

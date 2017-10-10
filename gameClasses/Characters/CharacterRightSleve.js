@@ -1,13 +1,18 @@
 var CharacterRightSleve = CharacterPart.extend({
 	classId: 'CharacterRightSleve',
 
-	init: function (container) {
+	init: function (container, shirt) {
 		var self = this;
 		self._part = 'rs';
 		self._depthTemp = 5;
 		self._style = container.data('shirt_rs');
 		self._customFPS = $CHARACTER_FPS / 2;
 		self._container = container;
+		self._shirt = shirt;
+
+		//Make a copy of our texture and assign it
+		self._ourTexture = shirt._ourTexture;
+
 		this._container.on('onCarryStop', function () { self.carryStop(); });
 
 		CharacterPart.prototype.init.call(this);

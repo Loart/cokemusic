@@ -8,6 +8,9 @@ var CharacterBody = CharacterPart.extend({
 		self._style = container.data('style');
 		self._container = container;
 
+		//Make a copy of our texture and assign it
+		self._ourTexture = ige.gameTexture.body[self._style];
+
 		CharacterPart.prototype.init.call(this);
 	},
 });

@@ -6,10 +6,14 @@ var igeClientConfig = {
 		'./gameClasses/TextureCopy.js',
 		'./gameClasses/Components/AnimatorComponent.js',
 
+		//Client Connection
+		'./Client/Connection.js',
+
 		//Floor, Tiles, Map, etc
 		'./gameClasses/Map/FloorTextureMap.js',
 		'./gameClasses/Map/GameMap.js',
 		'./gameClasses/Map/GameWallMatrix.js',
+		'./gameClasses/Map/GameWallContainer.js',
 		'./gameClasses/Map/GameWall.js',
 
 		//Character movements, clothing, etc

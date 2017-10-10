@@ -35,19 +35,19 @@ var ROOMS = {
 			{ 'x' : 0, 'y': 0 },
 			{ 'x' : 0, 'y': 1 },
 			{ 'x' : 0, 'y': 2 },
-			{ 'x' : 0, 'y': 3 },
+			{ 'x' : 0, 'y': 3, rightWall: true },
 			{ 'x' : 1, 'y': 0 },
 			{ 'x' : 1, 'y': 1 },
 			{ 'x' : 1, 'y': 2 },
-			{ 'x' : 1, 'y': 3 },
+			{ 'x' : 1, 'y': 3, rightWall: true },
 			{ 'x' : 2, 'y': 0 },
 			{ 'x' : 2, 'y': 1 },
 			{ 'x' : 2, 'y': 2 },
-			{ 'x' : 2, 'y': 3 },
-			{ 'x' : 3, 'y': 0 },
-			{ 'x' : 3, 'y': 1 },
-			{ 'x' : 3, 'y': 2 },
-			{ 'x' : 3, 'y': 3 },
+			{ 'x' : 2, 'y': 3, rightWall: true },
+			{ 'x' : 3, 'y': 0, leftWall: true },
+			{ 'x' : 3, 'y': 1, leftWall: true },
+			{ 'x' : 3, 'y': 2, leftWall: true },
+			{ 'x' : 3, 'y': 3, rightWall: true, leftWall: true },
 		],
 
 		'player_start' : {
@@ -59,6 +59,13 @@ var ROOMS = {
 			top : { },
 			side : { },
 		},
+
+		'window': {
+			x: 0,
+			y: 9,
+			anchorX: 40,
+			anchorY: -100,
+		}
 	},
 
 	'studio_model_c' : {

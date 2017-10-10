@@ -17,10 +17,21 @@ var CharacterShirt = IgeEntity.extend({
 			.anchor(0, container.data('anchorY'));
 
 
+		//Make a copy of our texture and assign it
+		self._ourTexture = ige.gameTexture.shirt[container.data('shirt_style')];
 		self.setTexture();
 
+		//Setup color
+		self.setColor('#A81313');
+
+		//Spawn left shirt sleve
+		self.leftSleve = new CharacterLeftSleve(container, self);
+
+		//Spawn right shirt sleve
+		self.rightSleve = new CharacterRightSleve(container, self);
+
 		//Listen for the changeDirection event so we can change
-		//the hair animation
+		//the shirt direction
 		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
 		container.on('onRest', function() { self.rest(); });
 
@@ -74,7 +85,11 @@ var CharacterShirt = IgeEntity.extend({
 			direction 	= dir,
 			subsection  = subDir;
 
-		this.texture(ige.gameTexture.people)
+		// this.texture(ige.gameTexture.people.textureFromCell(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png'))
+		// 					//.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
+		// 					.dimensionsFromCell();
+
+		this.texture(this._ourTexture)
 			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
 			.dimensionsFromCell();
 	},
@@ -84,7 +99,6 @@ var CharacterShirt = IgeEntity.extend({
 	},
 
 	setColor: function(colorSelection) {
-		//'rgba(0, 0, 255, 0.5)'
-		this._texture.applyFilter(IgeFilters.colorOverlay, {color: colorSelection});
+		this._texture.applyFilter(IgeFilters.multiply, {color: colorSelection});
 	}
 });

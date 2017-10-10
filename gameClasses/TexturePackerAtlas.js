@@ -8,7 +8,7 @@ var TexturePackerAtlas = IgeTexture.extend({
 
     init: function (atlasname,imageurl,dataurl) {
 
-        this.dataurl = dataurl;
+        this.dataurl   = dataurl;
         this.atlasName = atlasname;
 
         IgeTexture.prototype.init.call(this, imageurl);

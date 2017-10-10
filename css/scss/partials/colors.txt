@@ -1,0 +1,14 @@
+COLORS
+-----
+ff6200
+orange
+
+be3600
+orange dark
+
+f9f9f9
+off white
+
+525252
+gray
+

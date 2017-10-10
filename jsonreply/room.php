@@ -20,6 +20,13 @@
 			"room_name": "Studio #2",
 			"room_owner": "CokePhase",
 			"room_type": "studio_model_c"
+			"furniture" : [
+				{
+					"id": "fridge",
+					"x": 2,
+					"y": 5,
+				}
+			]
 			<?php
 		break;
 

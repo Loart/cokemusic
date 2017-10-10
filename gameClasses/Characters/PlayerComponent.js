@@ -52,6 +52,8 @@ var PlayerComponent = IgeClass.extend({
 		var endTile = ige.room.tileMap().mouseToTile(),
 			overTiles;
 
+		console.log(endTile);
+
 		// Check the bounds
 		 if(ige.client.withinBounds(endTile.x, endTile.y) == false) {
 		 	//Make sure we are not walking to the door

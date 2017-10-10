@@ -8,6 +8,11 @@ var CharacterShoes = CharacterPart.extend({
 		self._style = container.data('shoe_style');
 		self._container = container;
 
+		//Make a copy of our texture and assign it
+		self._ourTexture = ige.gameTexture.shoes[self._style];
+
 		CharacterPart.prototype.init.call(this);
+
+		self.setColor('green');
 	},
 });
